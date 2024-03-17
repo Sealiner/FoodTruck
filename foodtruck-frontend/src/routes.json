@@ -1,0 +1,9 @@
+[
+  {
+    "name": "index",
+    "pattern": "/index/?$",
+    "view": "index/index",
+    "title": "首页",
+    "devName": "index"
+  }
+]

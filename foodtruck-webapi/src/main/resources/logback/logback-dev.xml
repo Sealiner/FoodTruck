@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 不分级别同步文件日志输出配置 -->
+<configuration>
+    <!-- 日志级别 -->
+    <property name="logLevel" value="INFO"></property>
+    <!-- 日志地址 -->
+    <property name="logPath" value="/Users/sealiner/logs/foodtruck"></property>
+    <!-- 最大保存时间 -->
+    <property name="maxHistory" value="30"/>
+    <!-- 单个文件最大容量 -->
+    <property name="maxFileSize" value="100MB"/>
+    <!-- 最大保存容量 -->
+    <property name="totalSizeCap" value="20GB"/>
+    <!-- 异步缓冲队列的深度,该值会影响性能.默认值为256 -->
+    <property name="queueSize" value="512"></property>
+
+    <!-- IP打印实现类 -->
+    <conversionRule conversionWord="ip" converterClass="com.example.foodtruck.utils.logback.IpConvert" />
+
+    <!-- spring参数 -->
+    <springProperty scope="context" name="springAppName"
+                    source="spring.application.name" />
+    <springProperty scope="context" name="springProfiles"
+                    source="spring.profiles.active" />
+
+    <!-- 控制台打印日志的相关配置 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- 日志格式 -->
+        <encoder>  
+            <!--对应的颜色显示 -->
+            <pattern>${springAppName}.${springProfiles}-%ip %d{yyyy-MM-dd HH:mm:ss} %highlight(%-4level) %-5relative --- [%thread] %cyan(%logger{15}) : %msg
+                %n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <!-- 文件保存日志的相关配置，同步 -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 保存日志文件的路径 -->
+        <file>${logPath}/log.log</file>
+        <!-- 日志格式 -->
+        <encoder>
+            <pattern>${springAppName}.${springProfiles}-%ip %d{yyyy-MM-dd HH:mm:ss} %highlight(%-4level) %-5relative --- [%thread] %cyan(%logger{15}) : %msg
+                %n
+            </pattern>
+        </encoder>
+
+        <!-- 循环政策：基于时间创建日志文件 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- 日志文件名格式,%d按天循环,%i按大小分割文件 -->
+            <fileNamePattern>${logPath}/${springAppName}.${springProfiles}-%d{yyyy-MM-dd}.%i.log.zip</fileNamePattern>
+            <!-- 文件分割大小-->
+            <maxFileSize>${maxFileSize}</maxFileSize>
+            <!-- 最大保存时间-->
+            <maxHistory>${maxHistory}</maxHistory>
+            <!-- 最大保存容量-->
+            <totalSizeCap>${totalSizeCap}</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+
+    <!-- 基于INFO处理日志：具体控制台或者文件对日志级别的处理还要看所在appender配置的filter，如果没有配置filter，则使用root配置 -->
+    <root level="${logLevel}">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
+    </root>
+</configuration>

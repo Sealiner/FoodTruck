@@ -1,0 +1,8 @@
+server:
+  port: 8886
+  servlet:
+    context-path: '/api'
+#日志相关配置
+logging:
+  config: classpath:logback/logback-dev.xml
+

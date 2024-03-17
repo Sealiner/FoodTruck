@@ -1,0 +1,7 @@
+foodtruck-frontend/.idea
+foodtruck-frontend/node_modules
+foodtruck-frontend/build
+foodtruck-frontend/package-lock.json
+foodtruck-webapi/.idea
+foodtruck-webapi/.iml
+foodtruck-webapi/target
