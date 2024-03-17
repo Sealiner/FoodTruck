@@ -5,3 +5,4 @@ foodtruck-frontend/package-lock.json
 foodtruck-webapi/.idea
 foodtruck-webapi/.iml
 foodtruck-webapi/target
+.idea
