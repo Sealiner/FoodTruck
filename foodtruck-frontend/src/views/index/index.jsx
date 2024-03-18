@@ -59,7 +59,9 @@ class Index extends React.Component {
 
     componentDidMount() {
         const self = this;
+        console.log("haha");
         allData({}).then(res=>{
+            console.log("zzzzzz");
             if (res.code === 200) {
                 self.setState({
                     pageLoading:false,

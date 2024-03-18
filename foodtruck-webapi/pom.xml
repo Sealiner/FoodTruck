@@ -26,7 +26,7 @@
         <lombok.version>1.18.22</lombok.version>
         <springdoc.version>1.6.4</springdoc.version>
         <fastjson.version>1.2.47</fastjson.version>
-        <easyexcel.version>3.1.3</easyexcel.version>
+        <easyexcel.version>3.3.4</easyexcel.version>
     </properties>
 
     <dependencies>
