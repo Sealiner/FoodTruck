@@ -31,9 +31,7 @@ The web API is developed with Java and the framework is Spring Boot. As written 
 
 The web API service here is also very simple, no database, no interceptor, no paging, no monitor... I only wrote two apis here, one to return all data in the .cvs file and the other one to return data filtered by food item. 
 
-Maven is used to build and deploy the service.
-
-I usually use docker and k8s to deploy my services in production. You can see a dockerfile and some configurations in pom.xml(Because there is no docker service and registry in my new pc, I turned the related plugins off).
+Maven is used to build and deploy the service. You can use "mvn package" to do a local build. To deploy in production, there's still some work to do. I usually use docker and k8s to deploy my services in production. You can see a dockerfile and some configurations in pom.xml(Because there is no docker service and registry in my new pc, I turned the related plugins off).
 
 # Deploy in production
 To deploy in production, there's still some works to do. I usually use jenkins and gitlab to automatize the deployment of backend services. For web frontend, I ususally put the build files into the directory served by nginx.
