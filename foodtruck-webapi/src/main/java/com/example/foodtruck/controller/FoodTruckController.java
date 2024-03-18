@@ -25,7 +25,7 @@ public class FoodTruckController extends BaseController {
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     @Operation(summary = "Get ALL food trucks data")
-    public BaseVoWrapper<List<DataVo>> company() {
+    public BaseVoWrapper<List<DataVo>> all() {
         return BaseVoWrapMapper.success(dataService.readAllData());
     }
 
